@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ReceiptTracker.Models.Receipt>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.productName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.storeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Purchasedate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.warrantyEnd)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.productName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.storeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Purchasedate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.warrantyEnd)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.receiptId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.receiptId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.receiptId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
