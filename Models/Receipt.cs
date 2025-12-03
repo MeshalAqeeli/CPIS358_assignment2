@@ -2,7 +2,7 @@
 {
     public class Receipt
     {
-        public int id { get; set; }
+        public int receiptId { get; set; }
         public string productName { get; set; }
         public string storeName { get; set; }
         public DateTime Purchasedate { get; set; }
