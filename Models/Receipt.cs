@@ -11,9 +11,15 @@
 
         public DateTime WarrantyEnd { get; set; }
 
-
         public Receipt()
         {
+            ReceiptId = 0;
+            ProductName = string.Empty;
+            StoreName = string.Empty;
+            PurchaseDate = DateTime.MinValue;
+            Price = 0.0m;
+            Description = string.Empty;
+            WarrantyEnd = DateTime.MinValue;
 
         }
 
