@@ -9,12 +9,11 @@
         public decimal price { get; set; }
         public string Description { get; set; }
 
-        public int warrantyEnd { get; set; }
-
+        public DateTime warrantyEnd { get; set; }
 
         public Receipt()
         {
-            
+
         }
 
     }
