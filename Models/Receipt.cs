@@ -8,6 +8,7 @@ namespace ReceiptTracker.Models
         public string productName { get; set; }
         public string storeName { get; set; }
         public DateTime purchaseDate { get; set; }
+        
         public int price { get; set; }
         public string description { get; set; }
 
