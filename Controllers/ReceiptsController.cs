@@ -56,7 +56,7 @@ namespace ReceiptTracker.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Create([Bind("receiptId,productName,storeName,Purchasedate,price,description,warrantyEnd")] Receipt receipt)
+        public async Task<IActionResult> Create([Bind("receiptId,productName,storeName,purchaseDate,price,description,warrantyEnd")] Receipt receipt)
         {
             if (ModelState.IsValid)
             {
@@ -169,8 +169,8 @@ namespace ReceiptTracker.Controllers
             {
                 return Problem("Entity set 'ApplicationDbContext.Receipt'  is null.");
             }
-            var filteredReceipts = await _context.Receipt.Where(r => r.productName.Contains(SearchString)).ToListAsync();
-           
+            var filteredReceipts = await _context.Receipt.Where(r => r.productName != null && r.productName.ToLower().Contains(SearchString.ToLower())).ToListAsync();
+
             return View("Index", filteredReceipts);
 
         }
