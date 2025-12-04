@@ -2,17 +2,17 @@
 {
     public class Receipt
     {
-        public int ReceiptId { get; set; }
-        public string ProductName { get; set; }
-        public string StoreName { get; set; }
-        public DateTime PurchaseDate { get; set; }
-        public decimal Price { get; set; }
-        public string Description { get; set; }
+        public int receiptId { get; set; }
+        public string productName { get; set; }
+        public string storeName { get; set; }
+        public DateTime purchaseDate { get; set; }
+        public decimal price { get; set; }
+        public string description { get; set; }
 
-        public DateTime WarrantyEnd { get; set; }
+        public DateTime warrantyEnd { get; set; }
 
         public Receipt()
-        { 
+        {
 
         }
 
