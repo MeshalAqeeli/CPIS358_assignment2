@@ -9,7 +9,7 @@
         public decimal price { get; set; }
         public string description { get; set; }
 
-        public int warrantyEnd { get; set; }
+        public DateTime warrantyEnd { get; set; }
 
 
         public Receipt()
