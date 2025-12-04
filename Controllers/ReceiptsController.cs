@@ -169,7 +169,7 @@ namespace ReceiptTracker.Controllers
             {
                 return Problem("Entity set 'ApplicationDbContext.Receipt'  is null.");
             }
-            var filteredReceipts = await _context.Receipt.Where(r => r.productName.Contains(SearchString)).ToListAsync();
+            var filteredReceipts = await _context.Receipt.Where(r => r.productName.Contains(SearchString) || r.storeName.Contains(SearchString)).ToListAsync();
            
             return View("Index", filteredReceipts);
 
