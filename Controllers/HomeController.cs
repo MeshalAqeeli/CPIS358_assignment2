@@ -8,6 +8,17 @@ namespace ReceiptTracker.Controllers
     {
         public IActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+
+                SetCookies("userName", User.Identity.Name);
+            }
+            else
+            {
+
+                SetCookies("userName", "guest");
+            }
+            SetCookies("broswerName", Request.Headers["User-Agent"].ToString());
             return View();
         }
 
