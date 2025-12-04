@@ -86,7 +86,7 @@ namespace ReceiptTracker.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("receiptId,productName,storeName,Purchasedate,price,description,warrantyEnd")] Receipt receipt)
+        public async Task<IActionResult> Edit(int id, [Bind("receipt Id,product Name,store Name,purchase Date,price,description,warranty End")] Receipt receipt)
         {
             if (id != receipt.receiptId)
             {
