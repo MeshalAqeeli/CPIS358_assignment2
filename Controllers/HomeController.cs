@@ -21,5 +21,18 @@ namespace ReceiptTracker.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        public IActionResult SetCookies(string cookieName, string cookieValue)
+        {
+            CookieOptions options = new CookieOptions
+            {
+                Expires = DateTime.Now.AddDays(15), 
+                HttpOnly = true, 
+                
+            Secure = true, 
+                SameSite = SameSiteMode.Strict 
+            };
+            Response.Cookies.Append(cookieName, cookieValue, options);
+            return Ok("Cookies has been set.");
+        }
     }
 }
