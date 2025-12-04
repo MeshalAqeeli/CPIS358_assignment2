@@ -1,0 +1,28 @@
+﻿@model ReceiptTracker.Models.Receipt
+
+<h4>Receipt</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SearchResults">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label for="productName" class="control-label">
+                    <input for="productName" name=" SearchString"class="form-control" />
+                </label>
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="search" ="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

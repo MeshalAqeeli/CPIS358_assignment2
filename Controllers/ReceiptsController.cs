@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ReceiptTracker.Data;
 using ReceiptTracker.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ReceiptTracker.Controllers
 {
@@ -42,7 +43,7 @@ namespace ReceiptTracker.Controllers
 
             return View(receipt);
         }
-
+        [Authorize]
         // GET: Receipts/Create
         public IActionResult Create()
         {
@@ -54,6 +55,7 @@ namespace ReceiptTracker.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("receiptId,productName,storeName,Purchasedate,price,description,warrantyEnd")] Receipt receipt)
         {
             if (ModelState.IsValid)
@@ -64,7 +66,7 @@ namespace ReceiptTracker.Controllers
             }
             return View(receipt);
         }
-
+        [Authorize]
         // GET: Receipts/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -86,6 +88,7 @@ namespace ReceiptTracker.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("receiptId,productName,storeName,purchaseDate,price,description,warrantyEnd")] Receipt receipt)
         {
             if (id != receipt.receiptId)
@@ -117,6 +120,7 @@ namespace ReceiptTracker.Controllers
         }
 
         // GET: Receipts/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -137,6 +141,7 @@ namespace ReceiptTracker.Controllers
         // POST: Receipts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var receipt = await _context.Receipt.FindAsync(id);
@@ -152,6 +157,22 @@ namespace ReceiptTracker.Controllers
         private bool ReceiptExists(int id)
         {
             return _context.Receipt.Any(e => e.receiptId == id);
+        }
+        public async Task<IActionResult> SearchForm()
+        {
+            return View();
+
+        }
+        public async Task<IActionResult> SearchResults(string SearchString)
+        {
+            if(_context.Receipt == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.Receipt'  is null.");
+            }
+            var filteredReceipts = await _context.Receipt
+                .Where(r => r.productName.Contains(SearchString)).ToListAsync();
+            return View("Index", filteredReceipts);
+
         }
     }
 }
