@@ -253,8 +253,8 @@ namespace ReceiptTracker.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("warrantyEnd")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("warrantyEnd")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("receiptId");
 
